@@ -1,0 +1,22 @@
+name: inception
+
+services:
+  mariadb:
+    image: mariadb:inception
+    build: ./requirements/mariadb
+    restart: always
+    networks:
+      - inception
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+networks:
+  inception:
+    driver: bridge
+
+volumes:
+  mariadb_data:
+    name: inception_mariadb_data
+
+  wordpress_data:
+    name: inception_wordpress_data
