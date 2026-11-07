@@ -9,6 +9,11 @@ services:
       - inception
     volumes:
       - mariadb_data:/var/lib/mysql
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+    secrets:
+      - db_password
 
 networks:
   inception:
@@ -20,3 +25,7 @@ volumes:
 
   wordpress_data:
     name: inception_wordpress_data
+
+secrets:
+  db_password:
+    file: ../secrets/db_password.txt
