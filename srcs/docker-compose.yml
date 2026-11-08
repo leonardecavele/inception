@@ -29,9 +29,17 @@ services:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_HOST: mariadb
+      DOMAIN_NAME: ${DOMAIN_NAME}
+      WP_SITE_TITLE: ${WP_SITE_TITLE}
+      WP_ADMIN_USER: ${WP_ADMIN_USER}
+      WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
+      WP_USER_NAME: ${WP_USER_NAME}
+      WP_USER_EMAIL: ${WP_USER_EMAIL}
     secrets:
       - db_password
       - wp_salts
+      - wp_admin_password
+      - wp_user_password
 
 networks:
   inception:
@@ -50,3 +58,9 @@ secrets:
 
   wp_salts:
     file: ../secrets/wp_salts.php
+
+  wp_admin_password:
+    file: ../secrets/wp_admin_password.txt
+
+  wp_user_password:
+    file: ../secrets/wp_user_password.txt

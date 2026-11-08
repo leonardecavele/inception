@@ -14,11 +14,16 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 ARG WP_VERSION=7.1.4
+ARG WP_CLI_VERSION=2.12.0
 
 RUN mkdir -p /usr/src/wordpress && \
     curl -fSL "https://wordpress.org/wordpress-${WP_VERSION}.tar.gz" -o /tmp/wordpress.tar.gz && \
     tar -xzf /tmp/wordpress.tar.gz -C /usr/src/wordpress --strip-components=1 && \
     rm /tmp/wordpress.tar.gz
+
+RUN curl -fSL "https://github.com/wp-cli/wp-cli/releases/download/v${WP_CLI_VERSION}/wp-cli-${WP_CLI_VERSION}.phar" \
+    -o /usr/local/bin/wp && \
+    chmod 755 /usr/local/bin/wp
 
 COPY conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
 COPY conf/wp-config.php /usr/src/wordpress/wp-config.php
