@@ -15,6 +15,23 @@ services:
     secrets:
       - db_password
 
+  wordpress:
+    image: wordpress:inception
+    build: ./requirements/wordpress
+    restart: always
+    depends_on:
+      - mariadb
+    networks:
+      - inception
+    volumes:
+      - wordpress_data:/var/www/html
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_HOST: mariadb
+    secrets:
+      - db_password
+
 networks:
   inception:
     driver: bridge
