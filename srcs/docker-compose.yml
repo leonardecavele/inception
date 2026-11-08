@@ -31,6 +31,7 @@ services:
       DB_HOST: mariadb
     secrets:
       - db_password
+      - wp_salts
 
 networks:
   inception:
@@ -46,3 +47,6 @@ volumes:
 secrets:
   db_password:
     file: ../secrets/db_password.txt
+
+  wp_salts:
+    file: ../secrets/wp_salts.php

@@ -12,6 +12,8 @@ $table_prefix = 'wp_';
 
 define('WP_DEBUG', false);
 
+require_once '/run/wordpress/wp_salts.php';
+
 if (!defined('ABSPATH')) {
     define('ABSPATH', __DIR__ . '/');
 }
