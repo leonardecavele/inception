@@ -21,6 +21,7 @@ RUN mkdir -p /usr/src/wordpress && \
     rm /tmp/wordpress.tar.gz
 
 COPY conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
+COPY conf/wp-config.php /usr/src/wordpress/wp-config.php
 COPY tools/init.sh /usr/local/bin/init-wordpress
 
 RUN install -d -m 0755 /run/php && \
